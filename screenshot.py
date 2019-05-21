@@ -71,21 +71,21 @@ if args.inksaver:
 # visa.log_to_screen()
 scope.query_delay = 1
 data = scope.query_binary_values(':DISPlay:DATA? PNG,GRAY', datatype='B', expect_termination=False)
+datab = bytearray(data)
 
 if args.crop and Image is not None:
-    datab = bytearray(data)
-    im = Image.open(io.StringIO.StringIO(datab))
-    print(im.width, im.height)
+    im = Image.open(io.BytesIO(datab))
+    #print(im.width, im.height)
     left = 0
     top = 59
     width = 800
     height = 420
     im = im.crop((left, top, left+width, top+height))
-    print(im.width, im.height)
+    #print(im.width, im.height)
     im.save(filename)
 else:
     with open(filename,'wb') as newfile:
-        newfile.write(bytearray(data))
+        newfile.write(datab)
 
 if args.symlink:
     os.symlink(filename, 'screenshot-new.png')

@@ -1,0 +1,2 @@
+ACTION=="add", KERNEL=="usbtmc*", GROUP="usbtmc", MODE="0660"
+

@@ -1,0 +1,6 @@
+#! /bin/sh
+PATH=${HOME}/screenshot
+PYTHON=${PATH}/.venv/bin/python3
+
+${PYTHON} ${PATH}/screenshot.py -i --device USB0::2391::6053::MY51137503::0::INSTR -v -c -s
+
